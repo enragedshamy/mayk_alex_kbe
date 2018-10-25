@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Built-By: s0564456
+Class-Path: lib/commons-cli-1.4.jar lib/maven-assembly-plugin-3.1.0.ja
+ r lib/maven-plugin-api-3.0.jar lib/sisu-inject-plexus-1.4.2.jar lib/s
+ isu-inject-bean-1.4.2.jar lib/sisu-guice-2.1.7-noaop.jar lib/maven-co
+ re-3.0.jar lib/maven-settings-3.0.jar lib/maven-settings-builder-3.0.
+ jar lib/maven-repository-metadata-3.0.jar lib/maven-model-builder-3.0
+ .jar lib/maven-aether-provider-3.0.jar lib/aether-impl-1.7.jar lib/ae
+ ther-spi-1.7.jar lib/aether-api-1.7.jar lib/aether-util-1.7.jar lib/p
+ lexus-classworlds-2.2.3.jar lib/plexus-component-annotations-1.5.5.ja
+ r lib/plexus-sec-dispatcher-1.3.jar lib/plexus-cipher-1.4.jar lib/mav
+ en-artifact-3.0.jar lib/maven-model-3.0.jar lib/maven-common-artifact
+ -filters-3.0.1.jar lib/maven-shared-utils-3.1.0.jar lib/maven-artifac
+ t-transfer-0.9.0.jar lib/slf4j-api-1.7.5.jar lib/plexus-interpolation
+ -1.24.jar lib/plexus-archiver-3.5.jar lib/commons-compress-1.14.jar l
+ ib/snappy-0.4.jar lib/xz-1.6.jar lib/file-management-3.0.0.jar lib/ma
+ ven-shared-io-3.0.0.jar lib/maven-compat-3.0.jar lib/wagon-provider-a
+ pi-2.10.jar lib/commons-io-2.5.jar lib/maven-filtering-3.1.1.jar lib/
+ plexus-build-api-0.0.7.jar lib/plexus-io-3.0.0.jar lib/maven-archiver
+ -3.2.0.jar lib/plexus-utils-3.1.0.jar lib/commons-codec-1.6.jar
+Build-Jdk: 1.8.0_181
+Created-By: Maven Integration for Eclipse
+Main-Class: de.htw.ai.kbe.runMeRunner.CLITester
+

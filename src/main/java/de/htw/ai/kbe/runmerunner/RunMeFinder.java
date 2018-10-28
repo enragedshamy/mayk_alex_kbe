@@ -13,10 +13,11 @@ import java.util.stream.Stream;
 public class RunMeFinder {
 
     private final Class clazz;
-    private final String annotationClass = "de.htw.ai.kbe.runMeRunner.RunMe";
+    private final String fileName;
 
-    public RunMeFinder(Class clazz) {
+    public RunMeFinder(Class clazz, String fileName) {
         this.clazz = clazz;
+        this.fileName = fileName;
     }
 
     public void findAnnotatedMethodsAndWriteToFile() {
@@ -24,7 +25,7 @@ public class RunMeFinder {
         List<Method> methodsWithOutRunMe = new ArrayList<>();
         List<Method> rest = new ArrayList<>();
 
-        System.out.println("Class name: " + clazz.getName() + "\n");
+        System.out.println("\nSearching for methods of Class: " + clazz.getName() + "\n");
         Stream.of(clazz.getDeclaredMethods())
                 .forEach(method -> {
                             method.setAccessible(true);

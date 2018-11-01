@@ -15,6 +15,7 @@ public class RunMeFinder {
 
     private final Class clazz;
     private final String fileName;
+    private List<Method> methodsWithRunMe;
     private Object obj;
 
     public RunMeFinder(Class clazz, String fileName) {

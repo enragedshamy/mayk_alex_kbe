@@ -7,6 +7,7 @@ import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -14,29 +15,38 @@ public class RunMeFinder {
 
     private final Class clazz;
     private final String fileName;
+    private Object obj;
 
     public RunMeFinder(Class clazz, String fileName) {
         this.clazz = clazz;
         this.fileName = fileName;
+        try {
+            this.obj = clazz.newInstance();
+        } catch (InstantiationException | IllegalAccessException e) {
+            writeToFile("Instantiating class: " + clazz.getName() + "threw an Exception.");
+        }
     }
 
     public void findAnnotatedMethodsAndWriteToFile() {
         List<Method> methodsWithRunMe = new ArrayList<>();
         List<Method> methodsWithOutRunMe = new ArrayList<>();
-        List<Method> rest = new ArrayList<>();
+        HashMap<String, String> methodsGeneratingExceptions = new HashMap<>();
 
-        System.out.println("\nSearching for methods of Class: " + clazz.getName() + "\n");
         Stream.of(clazz.getDeclaredMethods())
                 .forEach(method -> {
                             method.setAccessible(true);
-                            System.out.println("Method name: " + method.getName());
 
-                            System.out.println("Annotations: ");
                             boolean flag = true;
                             for (Annotation annotation : method.getAnnotations()) {
                                 if (annotation.annotationType().getName().equals(RunMe.class.getName())) {
                                     methodsWithRunMe.add(method);
                                     flag = false;
+
+                                    try {
+                                        method.invoke(obj);
+                                    } catch (Exception e) {
+                                        methodsGeneratingExceptions.put(method.getName(), e.toString());
+                                    }
                                     break;
                                 }
                             }
@@ -46,10 +56,10 @@ public class RunMeFinder {
                         }
                 );
 
-        writeOutputToFile(methodsWithRunMe, methodsWithOutRunMe);
+        writeOutputToFile(methodsWithRunMe, methodsWithOutRunMe, methodsGeneratingExceptions);
     }
 
-    public void writeOutputToFile(List<Method> methodsWithRunMe, List<Method> methodsWithOutRunMe) {
+    private void writeOutputToFile(List<Method> methodsWithRunMe, List<Method> methodsWithOutRunMe, HashMap<String, String> methodsGeneratingExceptions) {
         StringBuilder toWrite = new StringBuilder();
 
         toWrite.append("Methods without @RunMe:\n");
@@ -69,6 +79,20 @@ public class RunMeFinder {
                         .append(method.getName())
                         .append("\n")
         );
+
+        toWrite.append("\n");
+
+        toWrite.append("Non-invokable methods:\n");
+        methodsGeneratingExceptions.forEach(
+                (method, exception) ->
+                        toWrite
+                                .append("\t")
+                                .append(method)
+                                .append(": ")
+                                .append(exception)
+                                .append("\n")
+        );
+
         writeToFile(toWrite.toString());
     }
 

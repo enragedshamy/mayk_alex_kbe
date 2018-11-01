@@ -1,7 +1,5 @@
 package de.htw.ai.kbe.runmerunner;
 
-import java.io.File;
-
 import org.apache.commons.cli.*;
 
 public class CLParser {

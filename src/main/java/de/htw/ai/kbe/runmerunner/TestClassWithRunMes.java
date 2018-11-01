@@ -1,15 +1,24 @@
 package de.htw.ai.kbe.runmerunner;
 
+import java.util.Date;
 
-public class TestClassWithRunMes {
+public abstract class TestClassWithRunMes {
+	
+	@RunMe
+	public abstract void abstractMethod();
 	
 	@RunMe
 	private void doNothing() {
 		
 	}
 	
+	@RunMe
+	public static void staticMethod(Date date) {
+		System.out.println(date.getTime());
+	}
+	
 	@RunMe @AnotherAnnotation
-	public boolean isOneEqualToOne() {
+	public boolean isOneEqualToOne(int integer) {
 		return true;
 	}
 	

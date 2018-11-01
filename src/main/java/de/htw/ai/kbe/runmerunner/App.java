@@ -14,6 +14,7 @@ public class App {
 				// -c de.htw.ai.kbe.runmerunner.TestClassWithRunMes
 				RunMeFinder rmf = new RunMeFinder(parser.getGivenClass(), parser.getFileName());
 			    rmf.findAnnotatedMethodsAndWriteToFile();
+			    rmf.runAnnotatedMethodsAndWriteExceptionsToFile();
 			}
 		} catch (ParseException | ClassNotFoundException e) {
 			e.printStackTrace();

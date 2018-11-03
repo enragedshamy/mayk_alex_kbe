@@ -9,10 +9,9 @@ public class App {
             if (parser.parsingSuccessful(args)) {
                 // RunMeFinder rmf = new RunMeFinder(TestClassWithRunMes.class);
                 // -c de.htw.ai.kbe.runmerunner.TestClassWithRunMes
-                RunMeFinder rmf = new RunMeFinder(parser.getGivenClass(), parser.getFileName());
-                rmf.findAnnotatedMethodsAndWriteToFile();
+                new RunMeFinder(parser.getGivenClass(), parser.getFileName()).execute();
             } else {
-                new RunMeFinder(TestClassWithRunMes.class, null).findAnnotatedMethodsAndWriteToFile();
+                new RunMeFinder(TestClassWithRunMes.class, null).execute();
             }
         } catch (Exception e) {
             e.printStackTrace();

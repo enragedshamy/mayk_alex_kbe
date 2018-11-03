@@ -1,6 +1,6 @@
 package de.htw.ai.kbe.runmerunner;
 
-public class TestClassWithRunMes {
+public abstract class AbstractTestClassWithRunMes {
 
     @RunMe
     private void doNothing() {
@@ -18,8 +18,5 @@ public class TestClassWithRunMes {
     }
 
     @RunMe
-    public void throwsException(int i) throws Exception {
-        throw new Exception();
-    }
-
+    public abstract void foo();
 }

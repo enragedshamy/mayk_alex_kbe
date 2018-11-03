@@ -67,7 +67,7 @@
 					<!-- MainClass in mainfest make a executable jar -->
 					<archive>
 					  <manifest>
-						  <mainClass>de.htw.ai.kbe.runmerunner.CLITester</mainClass>
+                          <mainClass>de.htw.ai.kbe.runmerunner.cl.CLITester</mainClass>
 					  </manifest>
 					</archive>
 
@@ -94,7 +94,7 @@
 		          <manifest>
 		            <addClasspath>true</addClasspath>
 		            <classpathPrefix>lib/</classpathPrefix>
-					  <mainClass>de.htw.ai.kbe.runmerunner.CLITester</mainClass>
+                      <mainClass>de.htw.ai.kbe.runmerunner.cl.CLITester</mainClass>
 		          </manifest>
 		        </archive>
 		      </configuration>

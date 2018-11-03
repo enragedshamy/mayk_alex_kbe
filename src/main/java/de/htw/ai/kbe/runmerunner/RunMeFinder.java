@@ -15,24 +15,25 @@ public class RunMeFinder {
 
     private final Class clazz;
     private final String fileName;
-    private List<Method> methodsWithRunMe;
-    private Object obj;
+
+    private StringBuilder toWrite;
+
+    private List<Method> methodsWithRunMe = new ArrayList<>();
+    private List<Method> methodsWithOutRunMe = new ArrayList<>();
+    private HashMap<String, String> methodsGeneratingExceptions = new HashMap<>();
 
     public RunMeFinder(Class clazz, String fileName) {
         this.clazz = clazz;
         this.fileName = fileName;
-        try {
-            this.obj = clazz.newInstance();
-        } catch (InstantiationException | IllegalAccessException e) {
-            writeToFile("Instantiating class: " + clazz.getName() + "threw an Exception.");
-        }
     }
 
-    public void findAnnotatedMethodsAndWriteToFile() {
-        List<Method> methodsWithRunMe = new ArrayList<>();
-        List<Method> methodsWithOutRunMe = new ArrayList<>();
-        HashMap<String, String> methodsGeneratingExceptions = new HashMap<>();
+    public void execute() {
+        checkForRunMeAnnotatedMethods();
+        invokeClass();
+        writeOutputToFile(methodsWithRunMe, methodsWithOutRunMe, methodsGeneratingExceptions);
+    }
 
+    private void checkForRunMeAnnotatedMethods() {
         Stream.of(clazz.getDeclaredMethods())
                 .forEach(method -> {
                             method.setAccessible(true);
@@ -42,12 +43,6 @@ public class RunMeFinder {
                                 if (annotation.annotationType().getName().equals(RunMe.class.getName())) {
                                     methodsWithRunMe.add(method);
                                     flag = false;
-
-                                    try {
-                                        method.invoke(obj);
-                                    } catch (Exception e) {
-                                        methodsGeneratingExceptions.put(method.getName(), e.toString());
-                                    }
                                     break;
                                 }
                             }
@@ -56,12 +51,30 @@ public class RunMeFinder {
                             }
                         }
                 );
-
-        writeOutputToFile(methodsWithRunMe, methodsWithOutRunMe, methodsGeneratingExceptions);
     }
 
-    private void writeOutputToFile(List<Method> methodsWithRunMe, List<Method> methodsWithOutRunMe, HashMap<String, String> methodsGeneratingExceptions) {
-        StringBuilder toWrite = new StringBuilder();
+    private void invokeClass() {
+        Object object = instantiateClass();
+        methodsWithRunMe.forEach(method -> {
+            try {
+                method.invoke(object);
+            } catch (Exception e) {
+                methodsGeneratingExceptions.put(method.getName(), e.toString());
+            }
+        });
+    }
+
+    private Object instantiateClass() {
+        try {
+            return clazz.newInstance();
+        } catch (Exception ignored) {
+            return null;
+        }
+    }
+
+    private void writeOutputToFile
+            (List<Method> methodsWithRunMe, List<Method> methodsWithOutRunMe, HashMap<String, String> methodsGeneratingExceptions) {
+        toWrite = new StringBuilder();
 
         toWrite.append("Methods without @RunMe:\n");
         methodsWithOutRunMe.forEach(method ->
@@ -94,14 +107,26 @@ public class RunMeFinder {
                                 .append("\n")
         );
 
-        writeToFile(toWrite.toString());
+        writeToFile();
     }
 
-    private void writeToFile(String stringToWrite) {
+    private void writeToFile() {
         try (BufferedWriter writer = Files.newBufferedWriter(Paths.get("report.txt"))) {
-            writer.write(stringToWrite);
+            writer.write(toWrite.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Method> getMethodsWithRunMe() {
+        return new ArrayList<>(methodsWithRunMe);
+    }
+
+    public List<Method> getMethodsWithOutRunMe() {
+        return new ArrayList<>(methodsWithOutRunMe);
+    }
+
+    public HashMap<String, String> getMethodsGeneratingExceptions() {
+        return new HashMap<>(methodsGeneratingExceptions);
     }
 }

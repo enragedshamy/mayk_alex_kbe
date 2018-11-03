@@ -1,6 +1,7 @@
 package de.htw.ai.kbe.runmerunner;
 
-public class TestClassWithRunMes {
+public abstract class AbstractTestClass {
+
 
     @RunMe
     private void doNothing() {
@@ -9,7 +10,7 @@ public class TestClassWithRunMes {
 
     @RunMe
     @AnotherAnnotation
-    public boolean isOneEqualToOne(int integer) {
+    public boolean isOneEqualToOne() {
         return true;
     }
 
@@ -18,8 +19,6 @@ public class TestClassWithRunMes {
     }
 
     @RunMe
-    public void throwsException(int i) throws Exception {
-        throw new Exception();
-    }
+    protected abstract void foo2();
 
 }

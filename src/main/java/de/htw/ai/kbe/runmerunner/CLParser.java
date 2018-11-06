@@ -18,16 +18,24 @@ public class CLParser {
 
 		// parsing stage
 		cmd = null;
-		try {
-			CommandLineParser parser = new DefaultParser();
-			cmd = parser.parse(options, args);
+		if (args.length %2 != 0) {
+			System.out.println("Parsing not possible. Each command line parameter needs an argument.");
+			return false;
 		}
-		catch (UnrecognizedOptionException e) {
-			wrongOption = true;
-			unrecognized = e.getOption();
+		else {
+			try {
+				CommandLineParser parser = new DefaultParser();
+				cmd = parser.parse(options, args);
+			}
+			catch (UnrecognizedOptionException e) {
+				wrongOption = true;
+				unrecognized = e.getOption();
+			}
 		}
 
-		// interrogation stage
+
+		// interrogation stage    kein Hauptmanifestattribut, in runMeRunner-0.0.1-SNAPSHOT.jar
+
 		HelpFormatter formatter = new HelpFormatter();
 		if (wrongOption) {
 			System.out.println(unrecognized + " isn't a valid option.");
@@ -41,11 +49,19 @@ public class CLParser {
 				return false;
 			} 
 			else  {
+				if (cmd.getOptionValue( "c" ).isEmpty() ) {
+					System.out.println("Option c may not be empty.");
+					return false;
+				}
 				 System.out.println( cmd.getOptionValue( "c" ) );
 					if (!cmd.hasOption("o")) {
 						System.out.println("Option o not indicated. Default file report.txt is used. ");
 					}
 					else {
+						if (cmd.getOptionValue( "o" ).isEmpty()) {
+							System.out.println("Option o indicated, but empty.");
+							return false;
+						}
 						file = cmd.getOptionValue( "o" );
 					}
 			}

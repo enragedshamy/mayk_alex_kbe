@@ -111,7 +111,7 @@ public class RunMeFinder {
     }
 
     private void writeToFile() {
-        try (BufferedWriter writer = Files.newBufferedWriter(Paths.get("report.txt"))) {
+        try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(fileName))) {
             writer.write(toWrite.toString());
         } catch (IOException e) {
             e.printStackTrace();

@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class RunMeFinder {
     private final String fileName;
 
     private StringBuilder toWrite;
+    private boolean notInstatiable;
 
     private List<Method> methodsWithRunMe = new ArrayList<>();
     private List<Method> methodsWithOutRunMe = new ArrayList<>();
@@ -32,7 +34,7 @@ public class RunMeFinder {
         invokeClass();
         writeOutputToFile(methodsWithRunMe, methodsWithOutRunMe, methodsGeneratingExceptions);
     }
-
+    
     private void checkForRunMeAnnotatedMethods() {
         Stream.of(clazz.getDeclaredMethods())
                 .forEach(method -> {
@@ -57,16 +59,26 @@ public class RunMeFinder {
         Object object = instantiateClass();
         methodsWithRunMe.forEach(method -> {
             try {
-                method.invoke(object);
+            	/*if (Modifier.isStatic(method.getModifiers()))
+            		method.invoke(null);  // muessten statische Methoden in abstrakten Klassen nicht aufrufbar sein ohne die unterliegende Klasse zu instanziieren ? */
+            	method.invoke(object);
             } catch (Exception e) {
-                methodsGeneratingExceptions.put(method.getName(), e.toString());
+            	if (notInstatiable) {
+            		methodsGeneratingExceptions.put(method.getName(), new InstantiationException().toString()); 
+            	}
+            	else 
+            		methodsGeneratingExceptions.put(method.getName(), e.toString());
             }
         });
     }
 
     private Object instantiateClass() {
+    	notInstatiable = false;
         try {
             return clazz.newInstance();
+        } catch (InstantiationException ignored) {
+        	notInstatiable = true;
+            return null;
         } catch (Exception ignored) {
             return null;
         }

@@ -9,7 +9,7 @@ public abstract class AbstractTestClassWithRunMes {
 
     @RunMe
     @AnotherAnnotation
-    public boolean isOneEqualToOne(int integer) {
+    public static boolean isOneEqualToOne(int integer) {
         return true;
     }
 

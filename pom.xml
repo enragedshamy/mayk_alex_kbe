@@ -39,7 +39,7 @@
 
 
     <build>
-        <finalName>runmerunner</finalName>
+        <finalName>runmerunner-1.0</finalName>
         <plugins>
 
             <!-- download source code in Eclipse, best practice -->

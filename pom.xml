@@ -4,7 +4,7 @@
 
     <groupId>de.htw.ai.kbe</groupId>
     <artifactId>mayk_alex_kbe</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>runmerunner</name>

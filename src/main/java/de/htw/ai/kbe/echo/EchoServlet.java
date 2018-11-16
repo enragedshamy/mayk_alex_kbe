@@ -3,7 +3,6 @@ package de.htw.ai.kbe.echo;
 import org.apache.commons.io.IOUtils;
 
 import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +18,7 @@ public class EchoServlet extends HttpServlet {
     private String uriToDB = null;
 
     @Override
-    public void init(ServletConfig servletConfig) throws ServletException {
+    public void init(ServletConfig servletConfig) {
         // Beispiel: Laden eines Konfigurationsparameters aus der web.xml
         this.uriToDB = servletConfig.getInitParameter("uriToDBComponent");
     }
@@ -31,7 +30,7 @@ public class EchoServlet extends HttpServlet {
         Enumeration<String> paramNames = request.getParameterNames();
 
         String responseStr = "";
-        String param = "";
+        String param;
         while (paramNames.hasMoreElements()) {
             param = paramNames.nextElement();
             responseStr = responseStr + param + "="

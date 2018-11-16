@@ -6,6 +6,8 @@
     <servlet>
         <servlet-name>Echoing Servlet</servlet-name>
         <servlet-class>de.htw.ai.kbe.echo.EchoServlet</servlet-class>
+        <!--<servlet-name>Songs Servlet</servlet-name>-->
+        <!--<servlet-class>de.htw.ai.kbe.echo.SongsServlet</servlet-class>-->
         <init-param>
             <param-name>uriToDBComponent</param-name>
             <param-value>db-uri:some.server/dbId</param-value>
@@ -20,4 +22,9 @@
         <servlet-name>Echoing Servlet</servlet-name>
         <url-pattern>/echo</url-pattern>
     </servlet-mapping>
+
+    <!--<servlet-mapping>-->
+    <!--<servlet-name>Songs Servlet</servlet-name>-->
+    <!--<url-pattern>/songs</url-pattern>-->
+    <!--</servlet-mapping>-->
 </web-app>

@@ -25,6 +25,6 @@
 
     <servlet-mapping>
         <servlet-name>Songs Servlet</servlet-name>
-        <url-pattern>/songs</url-pattern>
+        <url-pattern>/songsServlet</url-pattern>
     </servlet-mapping>
 </web-app>

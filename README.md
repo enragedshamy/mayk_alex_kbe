@@ -1,4 +1,5 @@
 # EchoServlet
+##http://localhost:8080/songsServlet/songs
 
 ## specified by Servlet API 3.1:
 https://docs.oracle.com/javaee/7/api/javax/servlet/package-summary.html

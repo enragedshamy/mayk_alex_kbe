@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,18 +15,21 @@ public class Songs {
     private List<Song> songs;
 
     private Songs() {
-        this.songs = new ArrayList<>();
-        readSongsFromFile();
+
     }
 
-    private void readSongsFromFile() {
+    private Songs(InputStream resourceAsStream) {
+        this.songs = new ArrayList<>();
+        readSongsFromFile(resourceAsStream);
+    }
+
+    private void readSongsFromFile(InputStream resourceAsStream) {
         ObjectMapper objectMapper = new ObjectMapper();
         File file = new File("songs");
         TypeReference<List<Song>> typeReference = new TypeReference<List<Song>>() {
         };
-
         try {
-            songs = objectMapper.readValue(file, typeReference);
+            songs = objectMapper.readValue(resourceAsStream, typeReference);
         } catch (IOException e) {
             System.out.println("File songs.json can not be loaded!");
             System.exit(1);
@@ -44,9 +48,9 @@ public class Songs {
         return null;
     }
 
-    public synchronized static Songs getInstance() {
+    public synchronized static Songs getInstance(InputStream resourceAsStream) {
         if (instance == null) {
-            instance = new Songs();
+            instance = new Songs(resourceAsStream);
         }
         return instance;
     }

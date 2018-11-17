@@ -2,12 +2,13 @@ package de.htw.ai.kbe.echo;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import de.htw.ai.kbe.echo.model.Song;
 import de.htw.ai.kbe.echo.model.Songs;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Enumeration;
 
 import static de.htw.ai.kbe.echo.model.Songs.getInstance;
@@ -24,7 +25,7 @@ public class SongsServlet extends HttpServlet {
     }
 
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String responseStr = "\nThis is a SongDB";
 
         Enumeration<String> parameterNames = request.getParameterNames();
@@ -50,7 +51,6 @@ public class SongsServlet extends HttpServlet {
         response.setStatus(200);
         try (PrintWriter out = response.getWriter()) {
             out.print(responseStr);
-        } catch (Exception ignored) {
         }
     }
 
@@ -62,11 +62,30 @@ public class SongsServlet extends HttpServlet {
         return objectMapper;
     }
 
-    public void setSongs(Songs songs) {
+    protected void setSongs(Songs songs) {
         this.songs = songs;
     }
 
-    public void setObjectMapper(ObjectMapper objectMapper) {
+    protected void setObjectMapper(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
+    }
+
+    private void writeToFile() throws IOException {
+        songs.getAllSongs().add(new Song());
+
+        String contextPath = getServletContext().getRealPath("/");
+
+        String xmlFilePath = contextPath + "WEB-INF\\songs";
+
+        System.out.println(xmlFilePath);
+
+        File myfile = new File(xmlFilePath);
+
+        myfile.createNewFile();
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter(myfile));
+        writer.write(objectMapper.writeValueAsString(songs.getAllSongs()));
+
+        writer.close();
     }
 }

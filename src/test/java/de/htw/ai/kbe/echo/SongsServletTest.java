@@ -1,6 +1,5 @@
 package de.htw.ai.kbe.echo;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.htw.ai.kbe.echo.model.Song;
 import de.htw.ai.kbe.echo.model.Songs;
@@ -11,7 +10,7 @@ import org.mockito.Spy;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
-import java.io.UnsupportedEncodingException;
+import java.io.IOException;
 import java.util.List;
 
 import static java.util.Collections.singletonList;
@@ -71,7 +70,7 @@ public class SongsServletTest {
     }
 
     @Test
-    public void doGet_all() throws UnsupportedEncodingException, JsonProcessingException {
+    public void doGet_all() throws IOException {
         requestMock.addParameter("all");
 
         underTest.doGet(requestMock, responseMock);
@@ -86,7 +85,7 @@ public class SongsServletTest {
     }
 
     @Test
-    public void doGet_byId() throws UnsupportedEncodingException, JsonProcessingException {
+    public void doGet_byId() throws IOException {
         requestMock.addParameter("songId", "1");
 
         underTest.doGet(requestMock, responseMock);

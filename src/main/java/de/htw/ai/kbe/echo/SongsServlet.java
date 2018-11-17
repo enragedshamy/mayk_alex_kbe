@@ -47,6 +47,7 @@ public class SongsServlet extends HttpServlet {
         }
 
         response.setContentType("application/json");
+        response.setStatus(200);
         try (PrintWriter out = response.getWriter()) {
             out.print(responseStr);
         } catch (Exception ignored) {

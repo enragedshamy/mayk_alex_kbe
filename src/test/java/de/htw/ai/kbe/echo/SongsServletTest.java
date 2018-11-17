@@ -77,6 +77,7 @@ public class SongsServletTest {
         underTest.doGet(requestMock, responseMock);
 
         assertEquals("application/json", responseMock.getContentType());
+        assertEquals(200, responseMock.getStatus());
 
         String actual = responseMock.getContentAsString();
         String expected = objectMapper.writeValueAsString(songs.getAllSongs());
@@ -91,6 +92,7 @@ public class SongsServletTest {
         underTest.doGet(requestMock, responseMock);
 
         assertEquals("application/json", responseMock.getContentType());
+        assertEquals(200, responseMock.getStatus());
 
         String actual = responseMock.getContentAsString();
         String expected = objectMapper.writeValueAsString(songs.getSongById(1));

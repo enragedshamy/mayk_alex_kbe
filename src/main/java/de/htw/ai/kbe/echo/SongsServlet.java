@@ -48,8 +48,24 @@ public class SongsServlet extends HttpServlet {
 
         response.setContentType("application/json");
         try (PrintWriter out = response.getWriter()) {
-            out.println(responseStr);
+            out.print(responseStr);
         } catch (Exception ignored) {
         }
+    }
+
+    protected Songs getSongs() {
+        return songs;
+    }
+
+    protected ObjectMapper getObjectMapper() {
+        return objectMapper;
+    }
+
+    public void setSongs(Songs songs) {
+        this.songs = songs;
+    }
+
+    public void setObjectMapper(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
     }
 }

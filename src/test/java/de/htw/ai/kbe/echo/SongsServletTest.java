@@ -1,5 +1,6 @@
 package de.htw.ai.kbe.echo;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.htw.ai.kbe.echo.model.Song;
 import de.htw.ai.kbe.echo.model.Songs;
@@ -11,9 +12,9 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.Collections.singletonList;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -47,7 +48,8 @@ public class SongsServletTest {
         underTest.setObjectMapper(objectMapper);
 
         song = new Song();
-        songsList = singletonList(song);
+        songsList = new ArrayList<>();
+        songsList.add(song);
         underTest.setSongs(songs);
         when(songs.getAllSongs()).thenReturn(songsList);
         when(songs.getSongById(1)).thenReturn(song);
@@ -97,5 +99,71 @@ public class SongsServletTest {
         String expected = objectMapper.writeValueAsString(songs.getSongById(1));
 
         assertEquals(expected, actual);
+    }
+
+    @Test
+    public void doPost_error() throws IOException {
+        requestMock.setContent("blablablabla".getBytes());
+        underTest.doPost(requestMock, responseMock);
+        assertEquals(400, responseMock.getStatus());
+        assertEquals("Wrong Song format!", responseMock.getContentAsString());
+    }
+
+    @Test
+    public void doPost_newSong() throws IOException {
+        Song songWithoutId = createSongWithoutId();
+
+        requestMock.setContent(toString(songWithoutId).getBytes());
+        underTest.doPost(requestMock, responseMock);
+
+        assertEquals(200, responseMock.getStatus());
+        assertTrue(responseMock.getContentAsString().contains("http://localhost:8080/songsServlet?songId="));
+
+        Song savedSong = songs.getAllSongs().get(1);
+
+        assertTrue(savedSong.getId() != 0);
+        assertEquals(songWithoutId.getAlbum(), savedSong.getAlbum());
+        assertEquals(songWithoutId.getArtist(), savedSong.getArtist());
+        assertEquals(songWithoutId.getTitle(), savedSong.getTitle());
+        assertEquals(songWithoutId.getReleased(), savedSong.getReleased());
+    }
+
+    private String toString(Song songWithoutId) throws JsonProcessingException {
+        return objectMapper.writeValueAsString(songWithoutId);
+    }
+
+    private Song createSongWithoutId() {
+        Song songWithoutId = new Song();
+        songWithoutId.setAlbum("Album");
+        songWithoutId.setArtist("Artist");
+        songWithoutId.setReleased(1234);
+        songWithoutId.setTitle("Title");
+        return songWithoutId;
+    }
+
+    @Test
+    public void doPost_updateSong() throws IOException {
+        Song songWithoutId = createSongWithId();
+
+        requestMock.setContent(toString(songWithoutId).getBytes());
+        underTest.doPost(requestMock, responseMock);
+
+        assertEquals(200, responseMock.getStatus());
+        assertTrue(responseMock.getContentAsString().contains("http://localhost:8080/songsServlet?songId="));
+
+        Song savedSong = songs.getAllSongs().get(1);
+
+        assertTrue(savedSong.getId() != 0);
+        assertTrue(savedSong.getId() != songWithoutId.getId());
+        assertEquals(songWithoutId.getAlbum(), savedSong.getAlbum());
+        assertEquals(songWithoutId.getArtist(), savedSong.getArtist());
+        assertEquals(songWithoutId.getTitle(), savedSong.getTitle());
+        assertEquals(songWithoutId.getReleased(), savedSong.getReleased());
+    }
+
+    private Song createSongWithId() {
+        Song songWithId = createSongWithoutId();
+        songWithId.setId(1);
+        return songWithId;
     }
 }

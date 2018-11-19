@@ -1,10 +1,12 @@
-package de.htw.ai.kbe.echo;
+package de.htw.ai.kbe.songsServlet;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.mock.web.MockServletConfig;
+
+import de.htw.ai.kbe.songsServlet.EchoServlet;
 
 import javax.servlet.ServletException;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package de.htw.ai.kbe.echo;
+package de.htw.ai.kbe.songsServlet;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

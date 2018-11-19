@@ -1,9 +1,11 @@
-package de.htw.ai.kbe.echo;
+package de.htw.ai.kbe.songsServlet;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.htw.ai.kbe.echo.model.Song;
 import de.htw.ai.kbe.echo.model.Songs;
+import de.htw.ai.kbe.songsServlet.SongsServlet;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;

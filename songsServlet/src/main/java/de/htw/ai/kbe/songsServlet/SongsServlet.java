@@ -30,31 +30,41 @@ public class SongsServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String responseStr = "\nThis is a SongDB";
-
-        Enumeration<String> parameterNames = request.getParameterNames();
-
-        while (parameterNames.hasMoreElements()) {
-            String param = parameterNames.nextElement();
-            try {
-                if (param.equals("all")) {
-                    responseStr = objectMapper.writeValueAsString(songs.getAllSongs());
-                    break;
-                } else if (param.equals("songId")) {
-                    String parameter = request.getParameter(param);
-                    int songId = Integer.parseInt(parameter);
-                    responseStr = objectMapper.writeValueAsString(songs.getSongById(songId));
-                    break;
-                }
-            } catch (JsonProcessingException e) {
-                responseStr = e.toString();
-            }
+        String acceptHeader = request.getHeader("accept").trim();
+        
+        if (acceptHeader == null || acceptHeader.compareTo("*") == 0 || acceptHeader.compareTo("application/json") == 0 ) {
+	        Enumeration<String> parameterNames = request.getParameterNames();
+	
+	        while (parameterNames.hasMoreElements()) {
+	            String param = parameterNames.nextElement();
+	            try {
+	                if (param.equals("all")) {
+	                    responseStr = objectMapper.writeValueAsString(songs.getAllSongs());
+	                    break;
+	                } else if (param.equals("songId")) {
+	                    String parameter = request.getParameter(param);
+	                    int songId = Integer.parseInt(parameter);
+	                    responseStr = objectMapper.writeValueAsString(songs.getSongById(songId));
+	                    break;
+	                }
+	            } catch (JsonProcessingException e) {
+	                responseStr = e.toString();
+	            }
+	        }
+	
+	        response.setContentType("application/json");
+	        response.setStatus(200);
+	        try (PrintWriter out = response.getWriter()) {
+	            out.print(responseStr);
+	        }
         }
-
-        response.setContentType("application/json");
-        response.setStatus(200);
-        try (PrintWriter out = response.getWriter()) {
-            out.print(responseStr);
-        }
+		else {
+			// 406 not acceptable
+			response.setStatus(406);
+	        try (PrintWriter out = response.getWriter()) {
+	            out.print("Wrong accept header!");
+	        }
+		}
     }
 
     @Override
@@ -154,4 +164,15 @@ public class SongsServlet extends HttpServlet {
 
         writer.close();
     }
+    
+	@Override
+	public void destroy() {
+		try {
+			writeToFile();
+		}
+		catch (IOException e) {
+			System.out.println("Writing to File failed.");
+			e.printStackTrace();
+		}		
+	}
 }

@@ -1,0 +1,5 @@
+de\htw\ai\kbe\echo\EchoServlet.class
+de\htw\ai\kbe\echo\SongsServlet.class
+de\htw\ai\kbe\echo\model\Songs.class
+de\htw\ai\kbe\echo\model\Songs$1.class
+de\htw\ai\kbe\echo\model\Song.class

@@ -59,7 +59,7 @@
 
     </dependencies>
     <build>
-        <finalName>echoServlet</finalName>
+        <finalName>songsServlet</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>

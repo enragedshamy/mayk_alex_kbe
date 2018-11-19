@@ -44,7 +44,9 @@ public class SongsServletTest {
 
     private void setUpMocks() {
         requestMock = new MockHttpServletRequest();
+       // requestMock.
         responseMock = new MockHttpServletResponse();
+   
 
         objectMapper = new ObjectMapper();
         underTest.setObjectMapper(objectMapper);
@@ -87,6 +89,15 @@ public class SongsServletTest {
 
         assertEquals(expected, actual);
     }
+    
+    @Test 
+    public void doGet_allWithWrongAcceptHeader() throws IOException {
+        requestMock.addParameter("all");
+        requestMock.addHeader("accept", "text/html");
+        underTest.doGet(requestMock, responseMock);
+        System.out.println(responseMock.getContentAsString());
+        assertEquals(406, responseMock.getStatus());
+    }
 
     @Test
     public void doGet_byId() throws IOException {
@@ -114,7 +125,7 @@ public class SongsServletTest {
     @Test
     public void doPost_newSong() throws IOException {
         Song songWithoutId = createSongWithoutId();
-
+        
         requestMock.setContent(toString(songWithoutId).getBytes());
         underTest.doPost(requestMock, responseMock);
 

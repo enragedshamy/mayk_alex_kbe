@@ -30,7 +30,7 @@ public class SongsServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String responseStr = "\nThis is a SongDB";
-        String acceptHeader = request.getHeader("accept").trim();
+        String acceptHeader = request.getHeader("accept");
         
         if (acceptHeader == null || acceptHeader.compareTo("*") == 0 || acceptHeader.compareTo("application/json") == 0 ) {
 	        Enumeration<String> parameterNames = request.getParameterNames();
@@ -87,7 +87,7 @@ public class SongsServlet extends HttpServlet {
             returnError(response);
         }
 
-//        writeToFile();
+        writeToFile();
     }
 
     private void returnError(HttpServletResponse response) throws IOException {

@@ -1,4 +1,4 @@
-package de.htw.ai.kbe.echo.model;
+package de.htw.ai.kbe.songsServlet.model;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

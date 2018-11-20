@@ -4,24 +4,13 @@
          http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
     <servlet>
-        <!--<servlet-name>Echoing Servlet</servlet-name>-->
-        <!--<servlet-class>de.htw.ai.kbe.echo.EchoServlet</servlet-class>-->
         <servlet-name>Songs Servlet</servlet-name>
-        <servlet-class>de.htw.ai.kbe.echo.SongsServlet</servlet-class>
+        <servlet-class>de.htw.ai.kbe.songsServlet.SongsServlet</servlet-class>
         <!--<init-param>-->
         <!--<param-name>songs</param-name>-->
         <!--<param-value></param-value>-->
         <!--</init-param>-->
     </servlet>
-
-    <!--  DIE URL AN DAS SERVLET, WELCHES IN EINEM TOMCAT_SERVER LAEUFT IST:
-          http://localhost:8080/echoServlet/echo
-          echoServlet ist die Bezeichnung der App, /echo ist Pfad zum Servlet
-     -->
-    <!--<servlet-mapping>-->
-    <!--<servlet-name>Echoing Servlet</servlet-name>-->
-    <!--<url-pattern>/echo</url-pattern>-->
-    <!--</servlet-mapping>-->
 
     <servlet-mapping>
         <servlet-name>Songs Servlet</servlet-name>

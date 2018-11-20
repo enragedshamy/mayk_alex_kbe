@@ -2,8 +2,8 @@ package de.htw.ai.kbe.songsServlet;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.htw.ai.kbe.echo.model.Song;
-import de.htw.ai.kbe.echo.model.Songs;
+import de.htw.ai.kbe.songsServlet.model.Song;
+import de.htw.ai.kbe.songsServlet.model.Songs;
 import org.apache.commons.io.IOUtils;
 
 import javax.servlet.ServletInputStream;
@@ -14,7 +14,7 @@ import java.io.*;
 import java.util.Enumeration;
 import java.util.Random;
 
-import static de.htw.ai.kbe.echo.model.Songs.getInstance;
+import static de.htw.ai.kbe.songsServlet.model.Songs.getInstance;
 
 public class SongsServlet extends HttpServlet {
 
@@ -87,7 +87,7 @@ public class SongsServlet extends HttpServlet {
             returnError(response);
         }
 
-        writeToFile();
+//        writeToFile();
     }
 
     private void returnError(HttpServletResponse response) throws IOException {

@@ -1,4 +1,4 @@
-package de.htw.ai.kbe.echo.model;
+package de.htw.ai.kbe.songsServlet.model;
 
 public class Song {
     private int id;

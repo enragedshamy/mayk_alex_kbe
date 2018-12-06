@@ -6,7 +6,7 @@ import de.htw.ai.kbe.di.DependencyBinder;
 public class MyApplication extends ResourceConfig {
 	
 	public MyApplication() {
+		packages("de.htw.ai.kbe.di");
 		register(new DependencyBinder());
-		packages("de.htw.ai.kbe.services");
 	}
 }

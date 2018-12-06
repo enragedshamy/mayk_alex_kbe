@@ -7,10 +7,10 @@ import org.glassfish.jersey.test.JerseyTest;
 
 public class SongsWebServiceTest extends JerseyTest {
 
-	@Override
-	protected Application configure() {
-		return new ResourceConfig(ContactsWebService.class);
-	}
+//	@Override
+//	protected Application configure() {
+//		return new ResourceConfig(ContactsWebService.class);
+//	}
 
 	/*
 	@Override

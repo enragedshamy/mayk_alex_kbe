@@ -3,6 +3,7 @@ package de.htw.ai.kbe.storage;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import de.htw.ai.kbe.commons.Commons;
 import de.htw.ai.kbe.exceptions.SongNotFoundException;
 import de.htw.ai.kbe.model.Song;
 
@@ -19,7 +20,7 @@ public class SongsServiceImpl implements SongsService {
     private static List<Song> songs;
 
     public SongsServiceImpl() {
-        readSongsFromFile();
+        songs = new Commons<Song>().readSongsFromFile("songs", Song.class);
     }
 
     @Override
@@ -57,16 +58,5 @@ public class SongsServiceImpl implements SongsService {
         songs.remove(existingSong);
         newSong.setId(id);
         songs.add(newSong);
-    }
-
-    private void readSongsFromFile() {
-        try {
-            InputStream songsJson = Thread.currentThread().getContextClassLoader().getResourceAsStream("songs");
-            songs = new ObjectMapper().readValue(songsJson, new TypeReference<List<Song>>() {
-            });
-        } catch (IOException e) {
-            System.out.println("File songs.json can not be loaded!");
-            songs = emptyList();
-        }
     }
 }

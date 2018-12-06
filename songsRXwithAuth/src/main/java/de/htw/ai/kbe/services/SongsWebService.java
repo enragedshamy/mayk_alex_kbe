@@ -30,6 +30,8 @@ import de.htw.ai.kbe.storage.SongsService;
 @Path("/songs")
 public class SongsWebService {
 
+    private static boolean authorisation = false;
+
     @Inject
     public SongsWebService(SongsService songsService) {
         this.songsService = songsService;
@@ -108,5 +110,13 @@ public class SongsWebService {
             System.out.println("delete: Song not found for id " + id);
             return Response.status(Status.NOT_FOUND).entity("No song found with id " + id).build();
         }
+    }
+
+    private synchronized boolean isAuthorisation() {
+        return authorisation;
+    }
+
+    public static synchronized void setAuthorisation() {
+        authorisation = true;
     }
 }

@@ -6,4 +6,6 @@ import java.util.Random;
 
 public interface AuthService {
     public String generateToken(String userId) throws UserNotFoundException;
+
+    boolean isTokenValid(String authorizationToken);
 }

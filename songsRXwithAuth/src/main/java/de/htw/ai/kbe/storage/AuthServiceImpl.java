@@ -24,6 +24,13 @@ public class AuthServiceImpl implements AuthService {
         return token;
     }
 
+    @Override
+    public boolean isTokenValid(String authorizationToken) {
+        return users
+                .stream()
+                .anyMatch(user -> user.getToken() != null && user.getToken().equals(authorizationToken));
+    }
+
     private synchronized User getUser(String userId) throws UserNotFoundException {
         return users
                 .stream()

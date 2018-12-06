@@ -7,14 +7,7 @@ import java.util.Optional;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -24,6 +17,7 @@ import javax.ws.rs.core.UriInfo;
 
 import de.htw.ai.kbe.exceptions.SongNotFoundException;
 import de.htw.ai.kbe.model.Song;
+import de.htw.ai.kbe.storage.AuthService;
 import de.htw.ai.kbe.storage.SongsService;
 
 // URL fuer diesen Service ist: http://localhost:8080/songsRX/rest/songs 
@@ -33,17 +27,21 @@ public class SongsWebService {
     private static boolean authorisation = false;
 
     @Inject
-    public SongsWebService(SongsService songsService) {
+    public SongsWebService(SongsService songsService, AuthService authService) {
         this.songsService = songsService;
+        this.authService = authService;
     }
 
     private SongsService songsService;
+    private AuthService authService;
 
     //GET http://localhost:8080/songsRX/rest/songs
     //Returns all songs
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public List<Song> getAllSongs(@Context HttpServletResponse httpResponse) throws IOException {
+    public List<Song> getAllSongs(@Context HttpServletResponse httpResponse,
+                                  @HeaderParam("Authorization") String authorizationToken) throws IOException {
+        if (checkAuthorization(httpResponse, authorizationToken)) return Collections.emptyList();
         System.out.println("getAllSongs: Returning all songs!");
         try {
             return songsService.getAllSongs();
@@ -56,10 +54,14 @@ public class SongsWebService {
     //GET http://localhost:8080/songsRX/rest/songs/1
     //Returns: 200 and contact with id 1
     //Returns: 404 on provided id not found
+
     @GET
     @Path("/{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Song getSong(@PathParam("id") Integer id, @Context HttpServletResponse httpResponse) throws IOException {
+    public Song getSong(@PathParam("id") Integer id,
+                        @Context HttpServletResponse httpResponse,
+                        @HeaderParam("Authorization") String authorizationToken) throws IOException {
+        if (checkAuthorization(httpResponse, authorizationToken)) return null;
         try {
             System.out.println("getSong: Returning song for id " + id);
             return songsService.getSongById(id);
@@ -77,7 +79,11 @@ public class SongsWebService {
     //  Location: /songsRX/rest/songs/neueID
     @POST
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Response createSong(Song song, @Context UriInfo uriInfo) {
+    public Response createSong(Song song,
+                               @Context UriInfo uriInfo,
+                               @Context HttpServletResponse httpResponse,
+                               @HeaderParam("Authorization") String authorizationToken) throws IOException {
+        if (checkAuthorization(httpResponse, authorizationToken)) return null;
         int newSongId = songsService.insertSong(song);
         UriBuilder uriBuilder = uriInfo.getAbsolutePathBuilder();
         uriBuilder.path(Integer.toString(newSongId));
@@ -90,7 +96,11 @@ public class SongsWebService {
     @PUT
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Path("/{id}")
-    public Response updateSong(@PathParam("id") Integer id, Song song) {
+    public Response updateSong(@PathParam("id") Integer id,
+                               Song song,
+                               @Context HttpServletResponse httpResponse,
+                               @HeaderParam("Authorization") String authorizationToken) throws IOException {
+        if (checkAuthorization(httpResponse, authorizationToken)) return null;
         try {
             songsService.updateSongWithId(id, song);
         } catch (SongNotFoundException ignored) {
@@ -101,7 +111,10 @@ public class SongsWebService {
 
     @DELETE
     @Path("/{id}")
-    public Response delete(@PathParam("id") Integer id) {
+    public Response delete(@PathParam("id") Integer id,
+                           @Context HttpServletResponse httpResponse,
+                           @HeaderParam("Authorization") String authorizationToken) throws IOException {
+        if (checkAuthorization(httpResponse, authorizationToken)) return null;
         try {
             songsService.deleteSongWithId(id);
             System.out.println("delete: Song deleted for id " + id);
@@ -118,5 +131,14 @@ public class SongsWebService {
 
     public static synchronized void setAuthorisation() {
         authorisation = true;
+    }
+
+    private boolean checkAuthorization(HttpServletResponse httpResponse, String authorizationToken) throws IOException {
+        if (authorisation)
+            if (authorizationToken == null || !authService.isTokenValid(authorizationToken)) {
+                httpResponse.sendError(Status.UNAUTHORIZED.getStatusCode(), "Unauthorized");
+                return true;
+            }
+        return false;
     }
 }

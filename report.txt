@@ -1,0 +1,4 @@
+Methods which couldn't be invocated:
+abstractMethod:	Given class isn't invocable and method not static.
+doNothing:	Given class isn't invocable and method not static.
+isOneEqualToOne:	Given class isn't invocable and method not static.

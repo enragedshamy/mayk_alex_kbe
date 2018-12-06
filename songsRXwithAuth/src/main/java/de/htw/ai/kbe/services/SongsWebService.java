@@ -16,6 +16,7 @@ import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
 import de.htw.ai.kbe.exceptions.SongNotFoundException;
+import de.htw.ai.kbe.exceptions.WrongSongException;
 import de.htw.ai.kbe.model.Song;
 import de.htw.ai.kbe.storage.AuthService;
 import de.htw.ai.kbe.storage.SongsService;
@@ -41,7 +42,10 @@ public class SongsWebService {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public List<Song> getAllSongs(@Context HttpServletResponse httpResponse,
                                   @HeaderParam("Authorization") String authorizationToken) throws IOException {
-        if (checkAuthorization(httpResponse, authorizationToken)) return Collections.emptyList();
+        if (checkAuthorization(authorizationToken)) {
+            httpResponse.sendError(Status.UNAUTHORIZED.getStatusCode(), "Authorization failed");
+            return Collections.emptyList();
+        }
         System.out.println("getAllSongs: Returning all songs!");
         try {
             return songsService.getAllSongs();
@@ -61,7 +65,10 @@ public class SongsWebService {
     public Song getSong(@PathParam("id") Integer id,
                         @Context HttpServletResponse httpResponse,
                         @HeaderParam("Authorization") String authorizationToken) throws IOException {
-        if (checkAuthorization(httpResponse, authorizationToken)) return null;
+        if (checkAuthorization(authorizationToken)) {
+            httpResponse.sendError(Status.UNAUTHORIZED.getStatusCode(), "Authorization failed");
+            return null;
+        }
         try {
             System.out.println("getSong: Returning song for id " + id);
             return songsService.getSongById(id);
@@ -81,13 +88,17 @@ public class SongsWebService {
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Response createSong(Song song,
                                @Context UriInfo uriInfo,
-                               @Context HttpServletResponse httpResponse,
-                               @HeaderParam("Authorization") String authorizationToken) throws IOException {
-        if (checkAuthorization(httpResponse, authorizationToken)) return null;
-        int newSongId = songsService.insertSong(song);
-        UriBuilder uriBuilder = uriInfo.getAbsolutePathBuilder();
-        uriBuilder.path(Integer.toString(newSongId));
-        return Response.created(uriBuilder.build()).build();
+                               @HeaderParam("Authorization") String authorizationToken) {
+        if (checkAuthorization(authorizationToken))
+            return Response.status(Status.UNAUTHORIZED).entity("Authorization failed").build();
+        try {
+            int newSongId = songsService.insertSong(song);
+            UriBuilder uriBuilder = uriInfo.getAbsolutePathBuilder();
+            uriBuilder.path(Integer.toString(newSongId));
+            return Response.created(uriBuilder.build()).build();
+        } catch (WrongSongException ignored) {
+            return Response.status(Status.BAD_REQUEST).entity("Song has no title!").build();
+        }
     }
 
     // was kann schieflaufen?
@@ -98,23 +109,25 @@ public class SongsWebService {
     @Path("/{id}")
     public Response updateSong(@PathParam("id") Integer id,
                                Song song,
-                               @Context HttpServletResponse httpResponse,
-                               @HeaderParam("Authorization") String authorizationToken) throws IOException {
-        if (checkAuthorization(httpResponse, authorizationToken)) return null;
+                               @HeaderParam("Authorization") String authorizationToken) {
+        if (checkAuthorization(authorizationToken))
+            return Response.status(Status.UNAUTHORIZED).entity("Authorization failed").build();
         try {
             songsService.updateSongWithId(id, song);
+            return Response.status(Status.NO_CONTENT).entity("Updating successful").build();
         } catch (SongNotFoundException ignored) {
             return Response.status(Status.NOT_FOUND).entity("No entry with id=" + id + " found.").build();
+        } catch (WrongSongException e) {
+            return Response.status(Status.BAD_REQUEST).entity("Song has no title!").build();
         }
-        return Response.status(Status.NO_CONTENT).entity("Updating successful").build();
     }
 
     @DELETE
     @Path("/{id}")
     public Response delete(@PathParam("id") Integer id,
-                           @Context HttpServletResponse httpResponse,
-                           @HeaderParam("Authorization") String authorizationToken) throws IOException {
-        if (checkAuthorization(httpResponse, authorizationToken)) return null;
+                           @HeaderParam("Authorization") String authorizationToken) {
+        if (checkAuthorization(authorizationToken))
+            return Response.status(Status.UNAUTHORIZED).entity("Authorization failed").build();
         try {
             songsService.deleteSongWithId(id);
             System.out.println("delete: Song deleted for id " + id);
@@ -133,12 +146,9 @@ public class SongsWebService {
         authorisation = true;
     }
 
-    private boolean checkAuthorization(HttpServletResponse httpResponse, String authorizationToken) throws IOException {
+    private boolean checkAuthorization(String authorizationToken) {
         if (authorisation)
-            if (authorizationToken == null || !authService.isTokenValid(authorizationToken)) {
-                httpResponse.sendError(Status.UNAUTHORIZED.getStatusCode(), "Unauthorized");
-                return true;
-            }
+            return authorizationToken == null || !authService.isTokenValid(authorizationToken);
         return false;
     }
 }

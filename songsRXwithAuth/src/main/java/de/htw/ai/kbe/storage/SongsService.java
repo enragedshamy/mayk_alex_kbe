@@ -3,6 +3,7 @@ package de.htw.ai.kbe.storage;
 import java.util.List;
 
 import de.htw.ai.kbe.exceptions.SongNotFoundException;
+import de.htw.ai.kbe.exceptions.WrongSongException;
 import de.htw.ai.kbe.model.Song;
 
 public interface SongsService {
@@ -11,10 +12,10 @@ public interface SongsService {
 
     public Song getSongById(int id) throws SongNotFoundException;
 
-    public int insertSong(Song song);
+    public int insertSong(Song song) throws WrongSongException;
 
     public void deleteSongWithId(Integer id) throws SongNotFoundException;
 
-    public void updateSongWithId(Integer id, Song song) throws SongNotFoundException;
+    public void updateSongWithId(Integer id, Song song) throws SongNotFoundException, WrongSongException;
 
 }

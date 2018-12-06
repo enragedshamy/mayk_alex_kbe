@@ -5,8 +5,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import de.htw.ai.kbe.commons.Commons;
 import de.htw.ai.kbe.exceptions.SongNotFoundException;
+import de.htw.ai.kbe.exceptions.WrongSongException;
 import de.htw.ai.kbe.model.Song;
 
+import javax.ws.rs.NotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -40,7 +42,8 @@ public class SongsServiceImpl implements SongsService {
 
 
     @Override
-    public synchronized int insertSong(Song song) {
+    public synchronized int insertSong(Song song) throws WrongSongException {
+        if (isTitleEmpty(song.getTitle())) throw new WrongSongException();
         int newSongId = new Random().nextInt();
         song.setId(newSongId);
         songs.add(song);
@@ -53,10 +56,15 @@ public class SongsServiceImpl implements SongsService {
     }
 
     @Override
-    public synchronized void updateSongWithId(Integer id, Song newSong) throws SongNotFoundException {
+    public synchronized void updateSongWithId(Integer id, Song newSong) throws SongNotFoundException, WrongSongException {
+        if (isTitleEmpty(newSong.getTitle())) throw new WrongSongException();
         Song existingSong = getSongById(id);
         songs.remove(existingSong);
         newSong.setId(id);
         songs.add(newSong);
+    }
+
+    private boolean isTitleEmpty(String title) {
+        return title == null || title.isEmpty();
     }
 }

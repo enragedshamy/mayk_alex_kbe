@@ -9,6 +9,8 @@ import de.htw.ai.kbe.model.Song;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Optional;
+import java.util.Random;
 
 import static java.util.Collections.emptyList;
 
@@ -20,6 +22,43 @@ public class SongsServiceImpl implements SongsService {
         readSongsFromFile();
     }
 
+    @Override
+    public synchronized List<Song> getAllSongs() throws SongNotFoundException {
+        return Optional.of(songs)
+                .orElseThrow(SongNotFoundException::new);
+    }
+
+    @Override
+    public synchronized Song getSongById(int id) throws SongNotFoundException {
+        return songs
+                .stream()
+                .filter(song -> song.getId() == id)
+                .findFirst()
+                .orElseThrow(SongNotFoundException::new);
+    }
+
+
+    @Override
+    public synchronized int insertSong(Song song) {
+        int newSongId = new Random().nextInt();
+        song.setId(newSongId);
+        songs.add(song);
+        return newSongId;
+    }
+
+    @Override
+    public synchronized void deleteSongWithId(Integer id) throws SongNotFoundException {
+        songs.remove(getSongById(id));
+    }
+
+    @Override
+    public synchronized void updateSongWithId(Integer id, Song newSong) throws SongNotFoundException {
+        Song existingSong = getSongById(id);
+        songs.remove(existingSong);
+        newSong.setId(id);
+        songs.add(newSong);
+    }
+
     private void readSongsFromFile() {
         try {
             InputStream songsJson = Thread.currentThread().getContextClassLoader().getResourceAsStream("songs");
@@ -29,38 +68,5 @@ public class SongsServiceImpl implements SongsService {
             System.out.println("File songs.json can not be loaded!");
             songs = emptyList();
         }
-    }
-
-    @Override
-    public synchronized List<Song> getAllSongs() {
-        return songs;
-    }
-
-    @Override
-    public synchronized Song getSongById(int id) {
-        for (Song song : songs) {
-            if (song.getId() == id)
-                return song;
-        }
-        return null;
-    }
-
-
-    @Override
-    public synchronized int insertSong(Song song) {
-        // TODO Automatisch generierter Methodenstub
-        return 0;
-    }
-
-    @Override
-    public synchronized void deleteSongWithId(Integer id) throws SongNotFoundException {
-        // TODO Automatisch generierter Methodenstub
-
-    }
-
-    @Override
-    public synchronized void updateSongWithId(Integer id) {
-        // TODO Automatisch generierter Methodenstub
-
     }
 }

@@ -5,7 +5,8 @@ import de.htw.ai.kbe.exceptions.UserNotFoundException;
 import java.util.Random;
 
 public interface AuthService {
+
     public String generateToken(String userId) throws UserNotFoundException;
 
-    boolean isTokenValid(String authorizationToken);
+    boolean isNotValidToken(String authToken);
 }

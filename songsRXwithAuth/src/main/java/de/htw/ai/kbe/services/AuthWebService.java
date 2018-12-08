@@ -1,5 +1,6 @@
 package de.htw.ai.kbe.services;
 
+import de.htw.ai.kbe.di.AuthTokenRequestFilter;
 import de.htw.ai.kbe.exceptions.SongNotFoundException;
 import de.htw.ai.kbe.exceptions.UserNotFoundException;
 import de.htw.ai.kbe.model.Song;
@@ -31,7 +32,7 @@ public class AuthWebService {
     public String getSong(@PathParam("userId") String userId, @Context HttpServletResponse httpResponse) throws IOException {
         try {
             String token = authService.generateToken(userId);
-            SongsWebService.setAuthorisation();
+            AuthTokenRequestFilter.setAuthorisation();
             return token;
         } catch (UserNotFoundException ignored) {
             httpResponse.sendError(Response.Status.NOT_FOUND.getStatusCode(), "No user found with userId " + userId);

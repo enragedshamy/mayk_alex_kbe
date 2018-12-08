@@ -25,10 +25,10 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public boolean isTokenValid(String authorizationToken) {
+    public boolean isNotValidToken(String authToken) {
         return users
                 .stream()
-                .anyMatch(user -> user.getToken() != null && user.getToken().equals(authorizationToken));
+                .noneMatch(user -> user.getToken() != null && user.getToken().equals(authToken));
     }
 
     private synchronized User getUser(String userId) throws UserNotFoundException {

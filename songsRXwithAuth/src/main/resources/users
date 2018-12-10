@@ -11,4 +11,10 @@
     "lastName": "Schuler",
     "firstName": "Elena"
   }
+  {
+    "id": 3,
+    "userId": "fmeier",
+    "lastName": "Meier",
+    "firstName": "Florian"
+  }
 ]

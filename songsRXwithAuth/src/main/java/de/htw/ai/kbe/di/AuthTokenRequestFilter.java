@@ -27,7 +27,7 @@ public class AuthTokenRequestFilter implements ContainerRequestFilter {
 
     @Override
     public void filter(ContainerRequestContext containerRequestContext) throws IOException {
-        if (!containerRequestContext.getUriInfo().getPath().contains("auth/"))
+        if (!containerRequestContext.getUriInfo().getPath().contains("auth"))
             if (isAuthorisation()) {
                 String authToken = containerRequestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
                 if (authToken == null || authService.isNotValidToken(authToken))

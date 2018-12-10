@@ -9,6 +9,8 @@ import de.htw.ai.kbe.exceptions.WrongSongException;
 import de.htw.ai.kbe.model.Song;
 
 import javax.ws.rs.NotFoundException;
+import javax.ws.rs.core.MediaType;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -45,9 +47,27 @@ public class SongsServiceImpl implements SongsService {
     public synchronized int insertSong(Song song) throws WrongSongException {
         if (isTitleEmpty(song.getTitle())) throw new WrongSongException();
         int newSongId = new Random().nextInt();
+        while(IdAlreadyUsed(newSongId)) {
+        	newSongId += 1;
+        }
+        if (song.getId() != 0) {
+        	int id = song.getId();
+        	if (!IdAlreadyUsed(id)) {
+        		newSongId = id;
+        	}	
+        }
         song.setId(newSongId);
         songs.add(song);
         return newSongId;
+    }
+    
+    private boolean IdAlreadyUsed(int id) {
+    	try {
+			getSongById(id);
+		} catch (SongNotFoundException e) {
+			return false;
+		}
+    	return true;
     }
 
     @Override

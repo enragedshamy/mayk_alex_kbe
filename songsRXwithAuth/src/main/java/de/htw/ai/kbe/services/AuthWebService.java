@@ -35,7 +35,7 @@ public class AuthWebService {
             AuthTokenRequestFilter.setAuthorisation();
             return token;
         } catch (UserNotFoundException ignored) {
-            httpResponse.sendError(Response.Status.NOT_FOUND.getStatusCode(), "No user found with userId " + userId);
+            httpResponse.sendError(Response.Status.FORBIDDEN.getStatusCode(), "No user found with userId " + userId);
             return null;
         }
     }

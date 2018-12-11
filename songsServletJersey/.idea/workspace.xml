@@ -1,7 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4d21c771-0f1c-4bcf-bde3-0861b97c67ba" name="Default Changelist" comment="" />
+    <list default="true" id="4d21c771-0f1c-4bcf-bde3-0861b97c67ba" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/artifacts/songsRX_war.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/artifacts/songsRX_war_exploded.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_8_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_8_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_8_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_jaxb_annotations_2_8_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__javax_annotation_javax_annotation_api_1_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__javax_inject_javax_inject_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__javax_servlet_javax_servlet_api_3_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__javax_validation_validation_api_1_1_0_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__javax_ws_rs_javax_ws_rs_api_2_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__junit_junit_4_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__org_glassfish_hk2_external_aopalliance_repackaged_2_5_0_b42.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__org_glassfish_hk2_external_javax_inject_2_5_0_b42.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__org_glassfish_hk2_hk2_api_2_5_0_b42.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__org_glassfish_hk2_hk2_locator_2_5_0_b42.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__org_glassfish_hk2_hk2_utils_2_5_0_b42.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__org_glassfish_hk2_osgi_resource_locator_1_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__org_glassfish_jersey_containers_jersey_container_jdk_http_2_26.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__org_glassfish_jersey_containers_jersey_container_servlet_2_26.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__org_glassfish_jersey_containers_jersey_container_servlet_core_2_26.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__org_glassfish_jersey_core_jersey_client_2_26.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__org_glassfish_jersey_core_jersey_common_2_26.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__org_glassfish_jersey_core_jersey_server_2_26.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__org_glassfish_jersey_ext_jersey_entity_filtering_2_26.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__org_glassfish_jersey_inject_jersey_hk2_2_26.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__org_glassfish_jersey_media_jersey_media_jaxb_2_26.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__org_glassfish_jersey_media_jersey_media_json_jackson_2_26.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__org_glassfish_jersey_test_framework_jersey_test_framework_core_2_26.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__org_glassfish_jersey_test_framework_providers_jersey_test_framework_provider_jdk_http_2_26.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/libraries/Maven__org_javassist_javassist_3_22_0_CR2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/sbt.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../songsRXwithAuth/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../songsRXwithAuth/.idea/workspace.xml" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,10 +54,11 @@
     <session id="1633826919">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.26" value="1" />
           <entry key="project.open.time.4" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -53,7 +95,7 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -114,81 +156,24 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="mayk_alex_kbe_songsServlet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="songsServletJersey" type="b2602c69:ProjectViewProjectNode" />
               <item name="songsServletJersey" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="mayk_alex_kbe_songsServlet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="songsServletJersey" type="b2602c69:ProjectViewProjectNode" />
               <item name="songsServletJersey" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mayk_alex_kbe_songsServlet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="songsServletJersey" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mayk_alex_kbe_songsServlet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="songsServletJersey" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mayk_alex_kbe_songsServlet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="songsServletJersey" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="songsServlet" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mayk_alex_kbe_songsServlet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="songsServletJersey" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mayk_alex_kbe_songsServlet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="songsServletJersey" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mayk_alex_kbe_songsServlet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="songsServletJersey" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mayk_alex_kbe_songsServlet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="songsServletJersey" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mayk_alex_kbe_songsServlet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="songsServletJersey" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="songsServlet" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -232,16 +217,17 @@
       <updated>1543956904957</updated>
       <workItem from="1543956908508" duration="2744000" />
       <workItem from="1544086442669" duration="506000" />
+      <workItem from="1544468485265" duration="86000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3250000" />
+    <option name="totallyTimeSpent" value="3336000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25340393" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25718608" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -285,47 +271,12 @@
         <state relative-caret-position="-1089" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/songsServlet/model/Songs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="35" column="44" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/songs">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="60" column="25" selection-start-line="60" selection-start-column="25" selection-end-line="60" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/songsServlet/SongsServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2618">
-          <caret line="178" selection-start-line="178" selection-end-line="178" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="29" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/songsServlet/MyApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/songsServlet/model/Songs.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/songs" />
+    <entry file="file://$PROJECT_DIR$/pom.xml" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/songsServlet/SongsServlet.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/songsServlet/MyApplication.java" />
   </component>
   <component name="masterDetails">
     <states>

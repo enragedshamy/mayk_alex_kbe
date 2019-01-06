@@ -4,8 +4,8 @@
     <persistence-unit name="songsRXDB-PU" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         
-        <class>de.htwBerlin.ai.kbe.model.Song</class>
-        <class>de.htwBerlin.ai.kbe.model.User</class>
+        <class>de.htw.ai.kbe.model.Song</class>
+        <class>de.htw.ai.kbe.model.User</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
         <properties>

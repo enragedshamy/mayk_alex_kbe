@@ -6,6 +6,8 @@ import javax.persistence.Persistence;
 
 import de.htw.ai.kbe.storage.AuthService;
 import de.htw.ai.kbe.storage.AuthServiceImpl;
+import de.htw.ai.kbe.storage.AuthServiceJPA;
+
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import de.htw.ai.kbe.storage.SongsService;
 import de.htw.ai.kbe.storage.SongsServiceImpl;
@@ -20,7 +22,6 @@ public class DependencyBinder extends AbstractBinder {
                  .createEntityManagerFactory("songsRXDB-PU"))
                  .to(EntityManagerFactory.class);
         bind(SongsServiceJPA.class).to(SongsService.class).in(Singleton.class);
-        //bind(SongsServiceImpl.class).to(SongsService.class).in(Singleton.class);
-        bind(AuthServiceImpl.class).to(AuthService.class).in(Singleton.class);
+        bind(AuthServiceJPA.class).to(AuthService.class).in(Singleton.class);
     }
 }

@@ -20,7 +20,6 @@ public class Song {
     private int released;
 
     public Song() {
-
     }
 
     public Song(int id, String title, String artist, String album, int released) {

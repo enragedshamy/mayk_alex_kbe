@@ -1,5 +1,6 @@
 package de.htw.ai.kbe.storage;
 
+import de.htw.ai.kbe.exceptions.SongNotFoundException;
 import de.htw.ai.kbe.model.Song;
 import de.htw.ai.kbe.model.SongList;
 import de.htw.ai.kbe.model.User;
@@ -86,6 +87,33 @@ public class SongListServiceJPA implements SongListService {
         } finally {
             em.close();
         }
+    }
+
+    @Override
+    public void deleteSongListWithId(Integer id, String token) {
+        EntityManager em = entityManagerFactory.createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            SongList songList = em.find(SongList.class, id);
+            if (songList != null) {
+                canDelete(songList, token);
+                transaction.begin();
+                em.remove(songList);
+                transaction.commit();
+            } else {
+                throw new NotFoundException();
+            }
+        } catch (Exception e) {
+            transaction.rollback();
+            throw new PersistenceException("Could not remove entity: " + e.toString());
+        } finally {
+            em.close();
+        }
+    }
+
+    private void canDelete(SongList songList, String token) throws Exception {
+        if (songList.getUser().getToken() == null || !songList.getUser().getToken().equals(token))
+            throw new Exception();
     }
 
     private SongList createSongList(Set<Song> newSongs, String token) {

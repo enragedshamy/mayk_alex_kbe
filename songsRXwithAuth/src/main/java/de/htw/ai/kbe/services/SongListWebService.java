@@ -1,10 +1,12 @@
 package de.htw.ai.kbe.services;
 
+import de.htw.ai.kbe.exceptions.SongNotFoundException;
 import de.htw.ai.kbe.exceptions.WrongSongException;
 import de.htw.ai.kbe.model.Song;
 import de.htw.ai.kbe.storage.SongListService;
 
 import javax.inject.Inject;
+import javax.persistence.PersistenceException;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
@@ -63,6 +65,22 @@ public class SongListWebService {
             return Response.status(Response.Status.BAD_REQUEST).entity("Song doesn't exist").build();
         }
     }
+
+    @DELETE
+    @Path("/{id}")
+    public Response delete(@Context HttpHeaders headers,
+                           @PathParam("id") Integer id) {
+        String token = getToken(headers);
+        try {
+            songListService.deleteSongListWithId(id, token);
+            return Response.status(Response.Status.NO_CONTENT).entity("Deleting successful").build();
+        } catch (NotFoundException ignored) {
+            return Response.status(Response.Status.NOT_FOUND).entity("No songList found with id " + id).build();
+        } catch (PersistenceException ignored) {
+            return Response.status(Response.Status.FORBIDDEN).entity("Forbidden " + id).build();
+        }
+    }
+
 
     private String getToken(HttpHeaders headers) {
         return headers.getHeaderString(HttpHeaders.AUTHORIZATION);

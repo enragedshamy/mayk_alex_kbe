@@ -3,7 +3,6 @@ package de.htw.ai.kbe.services;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +17,6 @@ import javax.ws.rs.core.UriInfo;
 import de.htw.ai.kbe.exceptions.SongNotFoundException;
 import de.htw.ai.kbe.exceptions.WrongSongException;
 import de.htw.ai.kbe.model.Song;
-import de.htw.ai.kbe.storage.AuthService;
 import de.htw.ai.kbe.storage.SongsService;
 
 // URL fuer diesen Service ist: http://localhost:8080/songsRX/rest/songs 

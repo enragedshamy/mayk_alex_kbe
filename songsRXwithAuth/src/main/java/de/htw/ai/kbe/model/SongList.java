@@ -1,80 +1,70 @@
 package de.htw.ai.kbe.model;
 
+import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "song")
 @Entity
-@Table(name = "Song")
+@Table(name = "SongList")
 public class SongList {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	@ManyToOne
-	@JoinColumn(name="owner")
-	private User owner;
-	private String visibility;
-	private String album;
-	@ManyToMany(mappedBy="contact", 
-            cascade=CascadeType.PERSIST)
-	private Set<Song> songsList;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-	public SongList() {
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    private User user;
 
-	}
+    private boolean isPrivate;
 
-	public Integer getId() {
-		return id;
-	}
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "SongList_Song",
+            joinColumns = {@JoinColumn(name = "songList_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "song_id", referencedColumnName = "id")}
+    )
+    private Set<Song> songList;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public SongList() {
 
-	public User getOwner() {
-		return owner;
-	}
+    }
 
-	public void setOwner(User owner) {
-		this.owner = owner;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public String getVisibility() {
-		return visibility;
-	}
+    public User getUser() {
+        return user;
+    }
 
-	public void setVisibility(String visibility) {
-		this.visibility = visibility;
-	}
+    public boolean isPrivate() {
+        return isPrivate;
+    }
 
-	public String getAlbum() {
-		return album;
-	}
+    public boolean isPublic() {
+        return !isPrivate;
+    }
 
-	public void setAlbum(String album) {
-		this.album = album;
-	}
+    public Set<Song> getSongList() {
+        return songList;
+    }
 
-	public Set<Song> getSongsList() {
-		return songsList;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setSongsList(Set<Song> songsList) {
-		this.songsList = songsList;
-	}
+    public void setUser(User user) {
+        this.user = user;
+    }
 
+    public void setPrivate(boolean aPrivate) {
+        isPrivate = aPrivate;
+    }
 
+    public void setSongList(Set<Song> songList) {
+        this.songList = songList;
+    }
 }

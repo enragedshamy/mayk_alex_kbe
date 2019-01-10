@@ -1,7 +1,6 @@
 package de.htw.ai.kbe.di;
 
 import de.htw.ai.kbe.storage.AuthService;
-import org.glassfish.jersey.message.internal.HttpHeaderReader;
 
 import javax.inject.Inject;
 import javax.ws.rs.NotAuthorizedException;
@@ -10,7 +9,6 @@ import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.PreMatching;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.ext.Provider;
-import java.io.IOException;
 
 @Provider
 @PreMatching
@@ -26,7 +24,7 @@ public class AuthTokenRequestFilter implements ContainerRequestFilter {
     }
 
     @Override
-    public void filter(ContainerRequestContext containerRequestContext) throws IOException {
+    public void filter(ContainerRequestContext containerRequestContext) {
         if (!containerRequestContext.getUriInfo().getPath().contains("auth"))
             if (isAuthorisation()) {
                 String authToken = containerRequestContext.getHeaderString(HttpHeaders.AUTHORIZATION);

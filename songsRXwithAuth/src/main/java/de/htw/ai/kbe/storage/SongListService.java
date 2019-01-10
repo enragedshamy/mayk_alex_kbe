@@ -12,4 +12,6 @@ public interface SongListService {
     List<Set<Song>> getSongListsByUserId(String userId, String token);
 
     Set<Song> getSongListsById(int list_id, String token);
+
+    int insertSongList(Set<Song> song, String token);
 }

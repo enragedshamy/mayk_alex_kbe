@@ -7,10 +7,10 @@ import de.htw.ai.kbe.model.User;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceException;
 import javax.ws.rs.ForbiddenException;
 import javax.ws.rs.NotFoundException;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -65,6 +65,81 @@ public class SongListServiceJPA implements SongListService {
             }
         } else {
             throw new NotFoundException();
+        }
+    }
+
+    @Override
+    public int insertSongList(Set<Song> newSongs, String token) {
+        existAllSongs(newSongs);
+        EntityManager em = entityManagerFactory.createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            SongList songList = createSongList(newSongs, token);
+            transaction.begin();
+            em.persist(songList);
+            transaction.commit();
+            return songList.getId();
+        } catch (Exception e) {
+            System.out.println("Error adding songLis: " + e.getMessage());
+            transaction.rollback();
+            throw new PersistenceException("Could not persist entity: " + e.toString());
+        } finally {
+            em.close();
+        }
+    }
+
+    private SongList createSongList(Set<Song> newSongs, String token) {
+        SongList songList = new SongList();
+        songList.setPrivate(false);
+        songList.setUser(getUserByToken(token));
+        songList.setSongList(newSongs);
+        return songList;
+    }
+
+    private User getUserByToken(String token) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        try {
+            return entityManager
+                    .createQuery("SELECT u FROM User u WHERE u.token = '" + token + "'", User.class)
+                    .getSingleResult();
+        } catch (Exception e) {
+            throw new PersistenceException("Could not persist entity: " + e.toString());
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    private void existAllSongs(Set<Song> newSongs) {
+        List<Song> allSongs = getAllSongs();
+        newSongs.forEach(newSong -> existSong(newSong, allSongs));
+    }
+
+    private void existSong(Song newSong, List<Song> allSongs) {
+        allSongs
+                .stream()
+                .filter(song -> match(song, newSong))
+                .findAny()
+                .orElseThrow(NotFoundException::new);
+    }
+
+    private boolean match(Song song, Song newSong) {
+        return song.getId() == newSong.getId() &&
+                song.getTitle().equals(newSong.getTitle()) &&
+                song.getAlbum().equals(newSong.getAlbum()) &&
+                song.getArtist().equals(newSong.getArtist()) &&
+                song.getReleased() == song.getReleased();
+    }
+
+    private List<Song> getAllSongs() {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        try {
+            return entityManager
+                    .createQuery("SELECT s FROM Song s", Song.class)
+                    .getResultList();
+        } catch (Exception e) {
+            throw new PersistenceException("Could not persist entity: " + e.toString());
+        } finally {
+            entityManager.close();
         }
     }
 

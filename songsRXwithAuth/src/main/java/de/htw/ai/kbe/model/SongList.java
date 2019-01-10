@@ -1,11 +1,11 @@
 package de.htw.ai.kbe.model;
 
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name = "songList")
 @Entity
 @Table(name = "SongList")
 public class SongList {

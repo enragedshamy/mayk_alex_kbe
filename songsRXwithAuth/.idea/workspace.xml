@@ -7,21 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d919d3e-da3c-4f21-bfb4-9421b640a279" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/services/SongListWebService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/storage/SongListService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/storage/SongListServiceJPA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/songsRX_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/songsRX_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_22_0_CR2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/songsRX.iml" beforeDir="false" afterPath="$PROJECT_DIR$/songsRX.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/di/AuthTokenRequestFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/di/AuthTokenRequestFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/di/DependencyBinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/di/DependencyBinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/model/SongList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/model/SongList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/services/SongsWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/services/SongsWebService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/storage/AuthServiceJPA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/storage/AuthServiceJPA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/services/SongListWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/services/SongListWebService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/storage/SongListService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/storage/SongListService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/storage/SongListServiceJPA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/storage/SongListServiceJPA.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -129,14 +117,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="1657" />
+          <entry key="java" value="2015" />
           <entry key="users" value="1" />
           <entry key="xml" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1657" />
+          <entry key="JAVA" value="2015" />
           <entry key="JSON" value="1" />
           <entry key="XML" value="9" />
         </counts>
@@ -148,8 +136,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/services/SongListWebService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="27" column="52" selection-start-line="27" selection-start-column="52" selection-end-line="27" selection-end-column="52" />
+            <state relative-caret-position="58">
+              <caret line="42" column="43" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -174,8 +162,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/storage/SongListService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+            <state relative-caret-position="160">
+              <caret line="13" column="14" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -186,8 +174,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/storage/SongListServiceJPA.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
-              <caret line="69" column="36" lean-forward="true" selection-start-line="69" selection-start-column="36" selection-end-line="69" selection-end-column="36" />
+            <state relative-caret-position="238">
+              <caret line="60" selection-start-line="60" selection-end-line="60" />
             </state>
           </provider>
         </entry>
@@ -207,6 +195,8 @@
       <find>jersey-test-framework-provider-grizzly2</find>
       <find>ManyToOne</find>
       <find>getSongListsByUserId</find>
+      <find>Forbid</find>
+      <find>getSongListsById</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -399,7 +389,7 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547142377939" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547144737874" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../ContentManagementUndSuchtechnologien/SparkSQLAufgabe/build.sbt" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -621,7 +611,7 @@
       <workItem from="1547111633047" duration="3954000" />
       <workItem from="1547122709172" duration="47000" />
       <workItem from="1547124688573" duration="3586000" />
-      <workItem from="1547133332943" duration="8952000" />
+      <workItem from="1547133332943" duration="11225000" />
     </task>
     <servers />
   </component>
@@ -658,7 +648,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23044000" />
+    <option name="totallyTimeSpent" value="25317000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -747,6 +737,11 @@
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
       <expression>
+        <expression-string>getAllSongLists()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>allSongListsForUser.collect(Collectors.toList())</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
@@ -755,11 +750,6 @@
         <expression-string>entityManager
                     .createQuery(&quot;SELECT a FROM SongList a&quot;, SongList.class)
                     .getResultList()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>getAllSongLists()</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -1030,8 +1020,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/services/SongListWebService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="27" column="52" selection-start-line="27" selection-start-column="52" selection-end-line="27" selection-end-column="52" />
+        <state relative-caret-position="58">
+          <caret line="42" column="43" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1040,8 +1030,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/storage/SongListService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+        <state relative-caret-position="160">
+          <caret line="13" column="14" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1050,8 +1040,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/de/htw/ai/kbe/storage/SongListServiceJPA.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="69" column="36" lean-forward="true" selection-start-line="69" selection-start-column="36" selection-end-line="69" selection-end-column="36" />
+        <state relative-caret-position="238">
+          <caret line="60" selection-start-line="60" selection-end-line="60" />
         </state>
       </provider>
     </entry>

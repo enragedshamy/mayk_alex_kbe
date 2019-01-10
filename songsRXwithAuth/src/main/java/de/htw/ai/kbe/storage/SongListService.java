@@ -10,4 +10,6 @@ public interface SongListService {
     List<SongList> getAllSongLists();
 
     List<Set<Song>> getSongListsByUserId(String userId, String token);
+
+    Set<Song> getSongListsById(int list_id, String token);
 }

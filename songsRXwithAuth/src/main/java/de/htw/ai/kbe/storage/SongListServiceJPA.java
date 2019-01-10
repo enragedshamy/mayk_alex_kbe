@@ -8,7 +8,11 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceException;
+import javax.ws.rs.ForbiddenException;
+import javax.ws.rs.NotFoundException;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -44,6 +48,24 @@ public class SongListServiceJPA implements SongListService {
             allSongListsForUser = getPrivateSongListsForUser(allSongListsForUser);
         }
         return getSongList(allSongListsForUser);
+    }
+
+    @Override
+    public Set<Song> getSongListsById(int list_id, String token) {
+        Optional<SongList> result = getAllSongLists()
+                .stream()
+                .filter(_songList -> _songList.getId() == list_id)
+                .findFirst();
+        if (result.isPresent()) {
+            SongList songList = result.get();
+            if (songList.isPublic() || songList.getUser().getToken() != null && songList.getUser().getToken().equals(token)) {
+                return songList.getSongList();
+            } else {
+                throw new ForbiddenException();
+            }
+        } else {
+            throw new NotFoundException();
+        }
     }
 
     private User getUser(String userId) {

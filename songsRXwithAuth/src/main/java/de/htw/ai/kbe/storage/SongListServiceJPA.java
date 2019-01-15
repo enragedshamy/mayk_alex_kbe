@@ -1,6 +1,7 @@
 package de.htw.ai.kbe.storage;
 
 import de.htw.ai.kbe.exceptions.SongNotFoundException;
+import de.htw.ai.kbe.exceptions.UserNotFoundException;
 import de.htw.ai.kbe.model.Song;
 import de.htw.ai.kbe.model.SongList;
 import de.htw.ai.kbe.model.User;
@@ -9,6 +10,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 import javax.ws.rs.ForbiddenException;
 import javax.ws.rs.NotFoundException;
@@ -42,7 +44,7 @@ public class SongListServiceJPA implements SongListService {
     }
 
     @Override
-    public List<Set<Song>> getSongListsByUserId(String userId, String token) {
+    public List<Set<Song>> getSongListsByUserId(String userId, String token) throws UserNotFoundException {
         User user = getUser(userId);
         Stream<SongList> allSongListsForUser = getAllSongListsForUser(userId);
         if (user.getToken() == null || !user.getToken().equals(token)) {
@@ -171,12 +173,14 @@ public class SongListServiceJPA implements SongListService {
         }
     }
 
-    private User getUser(String userId) {
+    private User getUser(String userId) throws UserNotFoundException {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
             return entityManager
                     .createQuery("SELECT u FROM User u WHERE u.userId = '" + userId + "'", User.class)
                     .getSingleResult();
+        } catch (NoResultException e) {
+        	throw new UserNotFoundException();
         } catch (Exception e) {
             throw new PersistenceException("Could not persist entity: " + e.toString());
         } finally {

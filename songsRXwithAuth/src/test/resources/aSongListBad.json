@@ -1,0 +1,21 @@
+{
+    "private": false,
+    "songs": [
+        {
+        "id": 5,
+        "title": "Bad Things",
+        "artist": "Camila Cabello, Machine Gun Kelly",
+        "album": "Bloom",
+        "released": 2016
+        },
+        {
+        "id": 66654,
+        "title": "Ibiz-a",
+        "artist": "Tom Smith",
+        "album": "At Night, Together.",
+        "released": 2007
+        }
+    ]
+}
+
+

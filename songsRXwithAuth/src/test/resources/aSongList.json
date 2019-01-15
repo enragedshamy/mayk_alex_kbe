@@ -1,0 +1,19 @@
+{
+    "private": true,
+    "songs": [
+        {
+        "id": 1,
+        "title": "Can't Stop the Feeling",
+        "artist": "Justin Timberlake",
+        "album": "Trolls",
+        "released": 2016
+        },
+        {
+        "id": 6,
+        "title": "I Took a Pill in Ibiza",
+        "artist": "Mike Posne",
+        "album": "At Night, Alone.",
+        "released": 2017
+        }
+    ]
+}

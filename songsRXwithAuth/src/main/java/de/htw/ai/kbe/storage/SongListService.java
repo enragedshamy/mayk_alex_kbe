@@ -10,9 +10,9 @@ import java.util.Set;
 public interface SongListService {
     List<SongList> getAllSongLists();
 
-    List<Set<Song>> getSongListsByUserId(String userId, String token) throws UserNotFoundException;
+    List<SongList> getSongListsByUserId(String userId, String token) throws UserNotFoundException;
 
-    Set<Song> getSongListsById(int list_id, String token);
+    SongList getSongListById(int list_id, String token);
 
     int insertSongList(SongList songList, String token);
 

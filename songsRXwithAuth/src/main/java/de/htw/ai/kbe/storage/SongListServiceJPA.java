@@ -44,17 +44,18 @@ public class SongListServiceJPA implements SongListService {
     }
 
     @Override
-    public List<Set<Song>> getSongListsByUserId(String userId, String token) throws UserNotFoundException {
+    public List<SongList> getSongListsByUserId(String userId, String token) throws UserNotFoundException {
         User user = getUser(userId);
         Stream<SongList> allSongListsForUser = getAllSongListsForUser(userId);
         if (user.getToken() == null || !user.getToken().equals(token)) {
             allSongListsForUser = getPrivateSongListsForUser(allSongListsForUser);
         }
-        return getSongList(allSongListsForUser);
+        return allSongListsForUser.collect(Collectors.toList());
+        //return getSongList(allSongListsForUser);
     }
 
     @Override
-    public Set<Song> getSongListsById(int list_id, String token) {
+    public SongList getSongListById(int list_id, String token) {
         Optional<SongList> result = getAllSongLists()
                 .stream()
                 .filter(_songList -> _songList.getId() == list_id)
@@ -62,7 +63,7 @@ public class SongListServiceJPA implements SongListService {
         if (result.isPresent()) {
             SongList songList = result.get();
             if (songList.isPublic() || songList.getUser().getToken() != null && songList.getUser().getToken().equals(token)) {
-                return songList.getSongList();
+                return songList;
             } else {
                 throw new ForbiddenException();
             }

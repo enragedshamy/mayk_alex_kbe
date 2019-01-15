@@ -47,7 +47,6 @@ public class SongsWebService {
     //GET http://localhost:8080/songsRX/rest/songs/1
     //Returns: 200 and contact with id 1
     //Returns: 404 on provided id not found
-
     @GET
     @Path("/{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
@@ -64,10 +63,6 @@ public class SongsWebService {
     }
 
 
-    // POST http://localhost:8080/songsRX/rest/songs with contact in payload
-    // Temp. solution returns:
-    //  Status Code 201 und URI fuer den neuen Eintrag im http-header 'Location' zurueckschicken, also:
-    //  Location: /songsRX/rest/songs/neueID
     @POST
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Response createSong(Song song, @Context UriInfo uriInfo) {
@@ -81,9 +76,7 @@ public class SongsWebService {
         }
     }
 
-    // was kann schieflaufen?
-    // id noch nicht vergeben? Trotzdem Einfuegen oder Fehler zurueck
-    // kann was mit song nicht stimmen? Sinnloser Input
+
     @PUT
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Path("/{id}")
@@ -98,7 +91,10 @@ public class SongsWebService {
             return Response.status(Status.BAD_REQUEST).entity("Song has no title!").build();
         }
     }
-
+    
+    
+    //Nutzer duerfen keine Songs mehr löschen
+    /*
     @DELETE
     @Path("/{id}")
     public Response delete(@PathParam("id") Integer id) {
@@ -110,5 +106,6 @@ public class SongsWebService {
             System.out.println("delete: Song not found for id " + id);
             return Response.status(Status.NOT_FOUND).entity("No song found with id " + id).build();
         }
-    }
+    }  */
+
 }

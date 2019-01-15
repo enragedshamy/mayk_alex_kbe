@@ -3,10 +3,13 @@ package de.htw.ai.kbe.model;
 import java.util.Set;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @XmlRootElement(name = "songList")
 @Entity
@@ -33,6 +36,7 @@ public class SongList {
             joinColumns = {@JoinColumn(name = "songList_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "song_id", referencedColumnName = "id")}
     )
+    @JsonProperty("songs")
     private Set<Song> songList;
 
     public SongList() {

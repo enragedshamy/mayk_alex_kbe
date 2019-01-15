@@ -38,7 +38,9 @@ public class SongList {
     public SongList() {
 
     }
-
+    
+    @JsonIgnore
+    @XmlTransient
     public Integer getId() {
         return id;
     }
@@ -52,7 +54,8 @@ public class SongList {
     public boolean isPrivate() {
         return isPrivate;
     }
-
+    
+    @JsonIgnore
     public boolean isPublic() {
         return !isPrivate;
     }
@@ -64,7 +67,8 @@ public class SongList {
     public void setId(Integer id) {
         this.id = id;
     }
-
+    
+    @XmlTransient
     public void setUser(User user) {
         this.user = user;
     }

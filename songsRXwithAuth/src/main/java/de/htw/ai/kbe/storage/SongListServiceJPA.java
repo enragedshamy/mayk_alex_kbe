@@ -72,18 +72,19 @@ public class SongListServiceJPA implements SongListService {
     }
 
     @Override
-    public int insertSongList(Set<Song> newSongs, String token) {
+    public int insertSongList(SongList songList, String token) {
+    	Set<Song> newSongs = songList.getSongList();
         existAllSongs(newSongs);
         EntityManager em = entityManagerFactory.createEntityManager();
         EntityTransaction transaction = em.getTransaction();
         try {
-            SongList songList = createSongList(newSongs, token);
+            SongList newSongList = createSongList(newSongs, token, songList.isPrivate());
             transaction.begin();
-            em.persist(songList);
+            em.persist(newSongList);
             transaction.commit();
-            return songList.getId();
+            return newSongList.getId();
         } catch (Exception e) {
-            System.out.println("Error adding songLis: " + e.getMessage());
+            System.out.println("Error adding new SongList: " + e.getMessage());
             transaction.rollback();
             throw new PersistenceException("Could not persist entity: " + e.toString());
         } finally {
@@ -118,20 +119,22 @@ public class SongListServiceJPA implements SongListService {
             throw new Exception();
     }
 
-    private SongList createSongList(Set<Song> newSongs, String token) {
+    private SongList createSongList(Set<Song> newSongs, String token, boolean isPrivate) throws UserNotFoundException {
         SongList songList = new SongList();
-        songList.setPrivate(false);
+        songList.setPrivate(isPrivate);
         songList.setUser(getUserByToken(token));
         songList.setSongList(newSongs);
         return songList;
     }
 
-    private User getUserByToken(String token) {
+    private User getUserByToken(String token) throws UserNotFoundException {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
             return entityManager
                     .createQuery("SELECT u FROM User u WHERE u.token = '" + token + "'", User.class)
                     .getSingleResult();
+        } catch (NoResultException e) {
+        	throw new UserNotFoundException();  
         } catch (Exception e) {
             throw new PersistenceException("Could not persist entity: " + e.toString());
         } finally {

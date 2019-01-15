@@ -4,6 +4,9 @@ import java.util.Set;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @XmlRootElement(name = "songList")
 @Entity
@@ -12,10 +15,14 @@ public class SongList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
+    @XmlTransient
     private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "userId")
+    @JsonIgnore
+    @XmlTransient
     private User user;
 
     private boolean isPrivate;
@@ -39,7 +46,9 @@ public class SongList {
     public User getUser() {
         return user;
     }
-
+    
+    
+    
     public boolean isPrivate() {
         return isPrivate;
     }

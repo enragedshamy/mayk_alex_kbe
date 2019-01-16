@@ -8,14 +8,14 @@ import de.htw.ai.kbe.model.Song;
 
 public interface SongsService {
 
-    public List<Song> getAllSongs() throws SongNotFoundException;
+    List<Song> getAllSongs() throws SongNotFoundException;
 
-    public Song getSongById(int id) throws SongNotFoundException;
+    Song getSongById(int id) throws SongNotFoundException;
 
-    public int insertSong(Song song) throws WrongSongException;
+    int insertSong(Song song) throws WrongSongException;
 
-    public void deleteSongWithId(Integer id) throws SongNotFoundException;
+    void deleteSongWithId(Integer id) throws SongNotFoundException;
 
-    public void updateSongWithId(Integer id, Song song) throws SongNotFoundException, WrongSongException;
+    void updateSongWithId(Integer id, Song song) throws SongNotFoundException, WrongSongException;
 
 }

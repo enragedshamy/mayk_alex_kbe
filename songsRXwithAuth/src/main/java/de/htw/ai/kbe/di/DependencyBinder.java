@@ -4,7 +4,6 @@ import javax.inject.Singleton;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import de.htw.ai.kbe.model.SongList;
 import de.htw.ai.kbe.storage.*;
 
 import org.glassfish.hk2.utilities.binding.AbstractBinder;

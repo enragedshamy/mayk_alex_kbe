@@ -1,9 +1,6 @@
 package de.htw.ai.kbe.services;
 
-import de.htw.ai.kbe.exceptions.SongNotFoundException;
 import de.htw.ai.kbe.exceptions.UserNotFoundException;
-import de.htw.ai.kbe.exceptions.WrongSongException;
-import de.htw.ai.kbe.model.Song;
 import de.htw.ai.kbe.model.SongList;
 import de.htw.ai.kbe.storage.SongListService;
 
@@ -13,10 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Set;
+
+import static java.util.Collections.emptyList;
 
 @Path("/songLists")
 public class SongListWebService {
@@ -30,7 +26,7 @@ public class SongListWebService {
 
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public List<SongList> getSongListsByUserId(@Context HttpServletResponse httpResponse, 
+    public List<SongList> getSongListsByUserId(@Context HttpServletResponse httpResponse,
     											@Context HttpHeaders headers,
     											@QueryParam("userId") String userId) throws IOException {
         String token = getToken(headers);
@@ -38,9 +34,9 @@ public class SongListWebService {
         	return songListService.getSongListsByUserId(userId, token);
         } catch (UserNotFoundException e) {
         	 httpResponse.sendError(Response.Status.NOT_FOUND.getStatusCode(), "No user with userId " + userId);
-        	 return new ArrayList<SongList>();
+        	 return emptyList();
         }
-        
+
     }
 
     @GET

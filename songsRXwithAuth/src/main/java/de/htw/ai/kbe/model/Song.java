@@ -12,8 +12,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "Song")
 public class Song {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String title;
     private String artist;
     private String album;

@@ -2,11 +2,9 @@ package de.htw.ai.kbe.storage;
 
 import de.htw.ai.kbe.commons.Commons;
 import de.htw.ai.kbe.exceptions.UserNotFoundException;
-import de.htw.ai.kbe.model.Song;
 import de.htw.ai.kbe.model.User;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 
 public class AuthServiceImpl implements AuthService {

@@ -1,9 +1,7 @@
 package de.htw.ai.kbe.commons;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.htw.ai.kbe.model.Song;
 
 import java.io.IOException;
 import java.io.InputStream;

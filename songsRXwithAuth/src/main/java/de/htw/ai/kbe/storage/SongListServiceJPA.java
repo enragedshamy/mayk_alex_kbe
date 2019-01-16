@@ -1,6 +1,5 @@
 package de.htw.ai.kbe.storage;
 
-import de.htw.ai.kbe.exceptions.SongNotFoundException;
 import de.htw.ai.kbe.exceptions.UserNotFoundException;
 import de.htw.ai.kbe.model.Song;
 import de.htw.ai.kbe.model.SongList;
@@ -201,11 +200,5 @@ public class SongListServiceJPA implements SongListService {
     private Stream<SongList> getPrivateSongListsForUser(Stream<SongList> allSongListsForUser) {
         return allSongListsForUser
                 .filter(SongList::isPublic);
-    }
-
-    private List<Set<Song>> getSongList(Stream<SongList> allSongListsForUser) {
-        return allSongListsForUser
-                .map(SongList::getSongList)
-                .collect(Collectors.toList());
     }
 }
